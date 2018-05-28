@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.rave.kafkaETL.DbConnector;
 import com.rave.kafkaETL.runner.mysql.MySqlRunner;
@@ -14,6 +16,7 @@ import com.rave.kafkaETL.runner.mysql.MySqlRunner;
  */
 public final class MySqlConnector extends DbConnector {
 
+	 private final Logger logger = Logger.getLogger(getClass().getName());
     private final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
     private String userName;
     private String passWord;
@@ -68,12 +71,16 @@ public final class MySqlConnector extends DbConnector {
     }
 
     public int executeUpdate(String sql) {
+    	
+    	logger.log(Level.INFO, "DB insert IN PROGRESS: "+sql );
         int returnValue = -1;
         try {
             returnValue = getStatement().executeUpdate(sql);
         } catch (SQLException se) {
             se.printStackTrace();
         }
+        
+    	logger.log(Level.INFO, "DB insert SUCCESS: "+sql );
         return returnValue;
     }
 
