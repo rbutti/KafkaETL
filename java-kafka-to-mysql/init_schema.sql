@@ -1,3 +1,9 @@
+create database kafka;
+use kafka;
+
+create user 'nativeuser'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
+GRANT ALL PRIVILEGES ON *.* TO 'nativeuser'@'localhost';
+
 drop table if exists event;
 create table event (
   event_id INT NOT NULL,
