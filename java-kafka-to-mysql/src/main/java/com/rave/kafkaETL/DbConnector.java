@@ -1,5 +1,6 @@
 package com.rave.kafkaETL;
 
+import java.sql.ResultSet;
 import java.sql.Statement;
 
 public abstract class DbConnector {
@@ -17,4 +18,6 @@ public abstract class DbConnector {
     public abstract void close();
 
     public abstract Statement getStatement();
+
+	public abstract ResultSet executeQuery(String insertQuery) ;
 }

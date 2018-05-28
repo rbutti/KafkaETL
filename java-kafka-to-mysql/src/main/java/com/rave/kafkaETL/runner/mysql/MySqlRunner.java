@@ -37,13 +37,13 @@ public class MySqlRunner extends Runner {
             if (this.eventData.getEventContext() == null) {
                 suffix = ", NULL, NULL);";
             } else {
-                suffix = String.format(", NULL, '%s');", this.eventData.getEventContext());
+                suffix = String.format(", NULL, '%s');", this.eventData.getEventContext()+"-"+Thread.currentThread().getId());
             }
         } else {
             if (this.eventData.getEventContext() == null) {
                 suffix = String.format(", '%s', NULL);", this.eventData.getServiceCode());
             } else {
-                suffix = String.format(", '%s', '%s');", this.eventData.getServiceCode(), this.eventData.getEventContext());
+                suffix = String.format(", '%s', '%s');", this.eventData.getServiceCode()+"-"+Thread.currentThread().getId(), this.eventData.getEventContext()+"-"+Thread.currentThread().getId());
             }
         }
 

@@ -101,7 +101,7 @@ public final class KafkaToMysqlService implements Service {
         executorService.execute(kafkaConsumeRunner);
         executorService.execute(intervalTimeRunner);
         executorService.execute(new QueueManagingRunner(mySqlRunnerQueue, executorService));
-        logger.log(Level.INFO, "Start Service...");
+        logger.log(Level.INFO, "Services STARTED");
         return this;
     }
 

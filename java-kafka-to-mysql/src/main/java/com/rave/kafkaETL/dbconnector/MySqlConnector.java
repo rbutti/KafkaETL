@@ -2,6 +2,7 @@ package com.rave.kafkaETL.dbconnector;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
@@ -81,6 +82,20 @@ public final class MySqlConnector extends DbConnector {
         }
         
     	logger.log(Level.INFO, "DB insert SUCCESS: "+sql );
+        return returnValue;
+    }
+    
+  public  ResultSet executeQuery(String sql) {
+    	
+    	logger.log(Level.INFO, "DB select IN PROGRESS: "+sql );
+    	ResultSet returnValue = null;
+        try {
+            returnValue = getStatement().executeQuery(sql);
+        } catch (SQLException se) {
+            se.printStackTrace();
+        }
+        
+    	logger.log(Level.INFO, "DB select SUCCESS: "+sql );
         return returnValue;
     }
 

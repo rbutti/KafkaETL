@@ -15,7 +15,7 @@ public class IntegrationSpec {
         String topic = "test";
         String PROPERTIES_PATH = ClassLoader.class.getResource("/config.properties").getPath();
 
-        SampleKafkaProducer sampleKafkaProducer = new SampleKafkaProducer(topic);
+        SampleKafkaProducer sampleKafkaProducer = new SampleKafkaProducer(topic, PROPERTIES_PATH);
         Service service = new KafkaToMysqlService(PROPERTIES_PATH);
         sampleKafkaProducer.start();
         service.start();
